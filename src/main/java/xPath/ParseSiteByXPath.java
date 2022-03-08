@@ -5,54 +5,86 @@ import org.htmlcleaner.DomSerializer;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-import java.io.BufferedReader;
+import javax.xml.xpath.*;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParseSiteByXPath {
-    private URL url;
-    private String html;
+    String URL;
+    Document doc;
+    TagNode tagNode;
+    XPath xpath;
+    XPathExpression expr;
+    NodeList nodeList;
 
-    public ParseSiteByXPath(String url) throws IOException {
-        this.url = new URL(url);
-        this.html = getPageByUrl();
+    public ParseSiteByXPath(String URL) {
+        this.URL = URL;
+        init();
     }
 
-    public String getDataByExpression(String expression) throws ParserConfigurationException, XPathExpressionException {
-        HtmlCleaner htmlCleaner = new HtmlCleaner();
-        TagNode tagNode = htmlCleaner.clean(html);
-
-        XPath xpath = XPathFactory.newInstance().newXPath();
-        Document document = new DomSerializer(new CleanerProperties()).createDOM(tagNode);
-
-        String str = (String) xpath.evaluate(expression, document, XPathConstants.STRING);
-        return str;
-    }
-
-    private String getPageByUrl() throws IOException {
-        URLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder result = new StringBuilder();
-        String readLine;
-        readLine = in.readLine();
-        while (readLine != null) {
-            result.append(readLine);
-
-            readLine = in.readLine();
+    private void init() {
+        try {
+            tagNode = (new HtmlCleaner()).clean(new URL(URL));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        in.close();
-        String s = result.toString();
-        return s;
+
+        try {
+            doc = new DomSerializer(new CleanerProperties()).createDOM(tagNode);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
+    public List<String> getItems(String expression) {
+        xpath = XPathFactory.newInstance().newXPath();
+        try {
+            expr = xpath.compile(expression);
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            nodeList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+
+        List<String> items = new ArrayList<>();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            String s = nodeList.item(i).getTextContent().replaceAll("[\\s]{2,}", " ");
+            if (s.charAt(0) == ' ') {
+                s = s.substring(1);
+            }
+            items.add(s);
+        }
+
+        return items;
+    }
+
+
+    // этот код в main
+    public void main() {
+//        String URL = "https://www.domcoffee.ru/";
+//        ParseSiteByXPath domCoffee = new ParseSiteByXPath(URL);
+//
+//        List<String> links = domCoffee.getItems("//div[contains(@class, 'catalog_item')]//div[contains(@class, 'image_wrapper_block')]//a//@href");
+//        List<String> photos = domCoffee.getItems("//div[contains(@class, 'catalog_item')]//div[contains(@class, 'image_wrapper_block')]//a//img//@alt");
+//        List<String> titles = domCoffee.getItems("//div[contains(@class, 'catalog_item')]//div[contains(@class, 'item_info')]//div[contains(@class, 'item-title')]");
+//        List<String> cost = domCoffee.getItems("//div[contains(@class, 'catalog_item')]//div[contains(@class, 'item_info')]//div[contains(@class, 'cost')]");
+//
+//        for (int i = 0; i < links.size(); i++) {
+//            System.out.println();
+//            System.out.println("< -- " + (i + 1) + " -- >");
+//            System.out.println("Ссылка: " + links.get(i));
+//            System.out.println("На фото: " + photos.get(i));
+//            System.out.println("Заголовок: " + titles.get(i));
+//            System.out.println("Цена: " + cost.get(i));
+//        }
+    }
 }

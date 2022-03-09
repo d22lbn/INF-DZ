@@ -1,4 +1,4 @@
-package xPath;
+package org.example.xPath;
 
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.DomSerializer;

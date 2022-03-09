@@ -1,12 +1,18 @@
 package org.example.test;
 
 import org.example.test.Musics.*;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class TestMain {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext("applicationContext.xml");
+//        ClassPathXmlApplicationContext context =
+//                new ClassPathXmlApplicationContext("applicationContext.xml");
+
+
+//        через java класс
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                SpringConfig.class
+        );
 
 //        TestBean testBean = context.getBean("testBean", TestBean.class);
 //        System.out.println(testBean.getName());
@@ -40,9 +46,6 @@ public class TestMain {
 //        player.setVolume(10);
 //
 //        System.out.println(player.getVolume() + " v " + player2.getVolume());
-
-
-
 
 
 //        ClassicalMusic classicalMusic = context.getBean("musicBeanClassical", ClassicalMusic.class);
@@ -81,8 +84,12 @@ public class TestMain {
 //        MusicPlayerAnn playerAnn = context.getBean("musicPlayerAnn", MusicPlayerAnn.class);
 //        System.out.println(playerAnn.getName() + " " + playerAnn.getVolume());
 
-        ClassicalMusicAnnotation music1 = context.getBean(
-                "classicalMusicAnnotation", ClassicalMusicAnnotation.class);
+//        ClassicalMusicAnnotation music1 = context.getBean(
+//                "classicalMusicAnnotation", ClassicalMusicAnnotation.class);
+
+        Computer computer = context.getBean("computer", Computer.class);
+
+        System.out.println(computer.toString());
 
 
         context.close();

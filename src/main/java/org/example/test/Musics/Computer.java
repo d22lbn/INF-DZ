@@ -3,12 +3,12 @@ package org.example.test.Musics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class Computer {
     private int id;
     private MusicPlayerAnn musicPlayerAnn;
 
-    @Autowired
+//    @Autowired
     public Computer(MusicPlayerAnn musicPlayerAnn) {
         this.id = 1;
         this.musicPlayerAnn = musicPlayerAnn;
@@ -16,6 +16,6 @@ public class Computer {
 
     @Override
     public String toString() {
-        return "Computer " + id + " is " + musicPlayerAnn.playMusic(Genres.ROCK);
+        return "Computer " + id + " is " + musicPlayerAnn.playMusic();
     }
 }

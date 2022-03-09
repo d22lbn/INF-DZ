@@ -5,29 +5,33 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+import java.util.List;
+
+//@Component
 public class MusicPlayerAnn {
-    @Value("${musicPlayerAnn.name}")
-    private String name;
-    @Value("${musicPlayerAnn.volume}")
-    private int volume;
+//    @Value("${musicPlayerAnn.name}")
+//    private String name;
+//    @Value("${musicPlayerAnn.volume}")
+//    private int volume;
 
-    public String getName() {
-        return name;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public int getVolume() {
+//        return volume;
+//    }
 
-    public int getVolume() {
-        return volume;
-    }
 
-    private Music music1;
-    private Music music2;
+    private List<Music> list;
 
-    @Autowired
-    public MusicPlayerAnn(@Qualifier("classicalMusicAnnotation") Music music1,
-                          @Qualifier("rockMusicAnnotation") Music music2) {
-        this.music1 = music1;
-        this.music2 = music2;
+
+//    private Music music1;
+//    private Music music2;
+
+    //    @Autowired
+    public MusicPlayerAnn(List<Music> list) {
+        this.list = list;
     }
 
     //    public MusicPlayerAnn(Music music) {
@@ -40,13 +44,18 @@ public class MusicPlayerAnn {
 //        this.music = music;
 //    }
 
-    public String playMusic(Genres genres) {
-        if (genres.equals(Genres.CLASSICAL)) {
-            return "playing: " + music1.getSong();
-        } else if (genres.equals(Genres.ROCK)) {
-            return "playing: " + music2.getSong();
-        }
-        return "";
+//    public String playMusic(Genres genres) {
+//        if (genres.equals(Genres.CLASSICAL)) {
+//            return "playing: " + music1.getSong();
+//        } else if (genres.equals(Genres.ROCK)) {
+//            return "playing: " + music2.getSong();
+//        }
+//        return "";
+//    }
+
+    public String playMusic() {
+        int i = (int) (Math.random() * list.size());
+        return "playing: " + list.get(i).getSong();
     }
 }
 

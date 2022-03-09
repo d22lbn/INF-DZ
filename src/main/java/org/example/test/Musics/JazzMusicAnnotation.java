@@ -1,31 +1,29 @@
 package org.example.test.Musics;
 
-import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
 //@Component
-public class ClassicalMusicAnnotation implements Music {
+public class JazzMusicAnnotation implements Music {
 //    @PostConstruct
 //    public void doMyInit() {
-//        System.out.println("classical init");
+//        System.out.println("jazz init");
 //    }
 //
 //    @PreDestroy
 //    public void doMyDestroy() {
-//        System.out.println("classical destroy");
+//        System.out.println("jazz destroy");
 //    }
 
     List<String> list;
 
-    public ClassicalMusicAnnotation() {
+    public JazzMusicAnnotation() {
         list = new ArrayList<>();
-        list.add("classical music 1");
-        list.add("classical music 2");
-        list.add("classical music 3");
+        list.add("jazz music 1");
+        list.add("jazz music 2");
+        list.add("jazz music 3");
     }
 
 

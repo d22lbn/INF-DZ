@@ -1,19 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--    <bean id="testBean"-->
-<!--          class="org.example.test.TestBean">-->
-<!--        <constructor-arg value="Alex"/>-->
-<!--    </bean>-->
+    <!--    подключение файла-->
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="musicBean"
+    <!--    <bean id="testBean"-->
+    <!--          class="org.example.test.TestBean">-->
+    <!--        <constructor-arg value="Alex"/>-->
+    <!--    </bean>-->
+
+    <bean id="musicBeanClassical"
+          class="org.example.test.ClassicalMusic">
+    </bean>
+    <bean id="musicBeanRock"
+          class="org.example.test.RockMusic">
+    </bean>
+    <bean id="musicBeanJass"
           class="org.example.test.JassMusic">
+    </bean>
+
+
+    <!--    <bean id="musicPlayerBean"-->
+    <!--          class="org.example.test.MusicPlayer">-->
+    <!--        &lt;!&ndash;        Dependency Injection&ndash;&gt;-->
+    <!--        &lt;!&ndash;        <constructor-arg ref="musicBean"/>&ndash;&gt;-->
+
+    <!--        &lt;!&ndash;        через сеттер&ndash;&gt;-->
+    <!--        <property name="music" ref="musicBean"/>-->
+
+    <!--        &lt;!&ndash;        добавили какие-то значения конкретные&ndash;&gt;-->
+    <!--        <property name="name" value="${musicPlayer.name}"/>-->
+    <!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+    <!--    </bean>-->
+
+
+    <!--    лист через конструктор-->
+    <bean id="musicPlayerBeansConstr"
+          class="org.example.test.MusicPlayer">
+        <constructor-arg>
+            <list>
+                <ref bean="musicBeanClassical"/>
+                <ref bean="musicBeanRock"/>
+                <ref bean="musicBeanJass"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!--    лист через сеттер-->
+    <bean id="musicPlayerBeansSetter"
+          class="org.example.test.MusicPlayer">
+        <property name="musicList">
+            <list value-type="org.example.test.Music">
+                <ref bean="musicBeanClassical"/>
+                <ref bean="musicBeanRock"/>
+                <ref bean="musicBeanJass"/>
+            </list>
+        </property>
     </bean>
 
 </beans>

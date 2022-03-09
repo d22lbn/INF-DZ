@@ -16,52 +16,56 @@
     <!--    </bean>-->
 
     <bean id="musicBeanClassical"
-          class="org.example.test.ClassicalMusic">
+          class="org.example.test.Musics.ClassicalMusic">
     </bean>
     <bean id="musicBeanRock"
-          class="org.example.test.RockMusic">
+          class="org.example.test.Musics.RockMusic">
     </bean>
     <bean id="musicBeanJass"
-          class="org.example.test.JassMusic">
+          class="org.example.test.Musics.JassMusic">
     </bean>
 
 
-<!--    <bean id="musicPlayerBean"-->
-<!--          class="org.example.test.MusicPlayer">-->
-<!--        &lt;!&ndash;        Dependency Injection&ndash;&gt;-->
-<!--        &lt;!&ndash;        <constructor-arg ref="musicBean"/>&ndash;&gt;-->
+    <bean id="musicPlayerBean"
+          class="org.example.test.MusicPlayer"
+          scope="prototype">
+        <!--          если singleton, то будет на одно и то же ссылаться-->
 
-<!--        &lt;!&ndash;        через сеттер&ndash;&gt;-->
-<!--        <property name="music" ref="musicBean"/>-->
 
-<!--        &lt;!&ndash;        добавили какие-то значения конкретные&ndash;&gt;-->
-<!--        <property name="name" value="${musicPlayer.name}"/>-->
-<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
-<!--    </bean>-->
+        <!--        &lt;!&ndash;        Dependency Injection&ndash;&gt;-->
+        <!--        &lt;!&ndash;        <constructor-arg ref="musicBean"/>&ndash;&gt;-->
+
+        <!--        &lt;!&ndash;        через сеттер&ndash;&gt;-->
+        <!--        <property name="music" ref="musicBean"/>-->
+
+        <!--        &lt;!&ndash;        добавили какие-то значения конкретные&ndash;&gt;-->
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
 
 
     <!--    лист через конструктор-->
-    <bean id="musicPlayerBeansConstr"
-          class="org.example.test.MusicPlayer">
-        <constructor-arg>
-            <list>
-                <ref bean="musicBeanClassical"/>
-                <ref bean="musicBeanRock"/>
-                <ref bean="musicBeanJass"/>
-            </list>
-        </constructor-arg>
-    </bean>
+    <!--    <bean id="musicPlayerBeansConstr"-->
+    <!--          class="org.example.test.MusicPlayer">-->
+    <!--        <constructor-arg>-->
+    <!--            <list>-->
+    <!--                <ref bean="musicBeanClassical"/>-->
+    <!--                <ref bean="musicBeanRock"/>-->
+    <!--                <ref bean="musicBeanJass"/>-->
+    <!--            </list>-->
+    <!--        </constructor-arg>-->
+    <!--    </bean>-->
 
     <!--    лист через сеттер-->
-    <bean id="musicPlayerBeansSetter"
-          class="org.example.test.MusicPlayer">
-        <property name="musicList">
-            <list value-type="org.example.test.Music">
-                <ref bean="musicBeanClassical"/>
-                <ref bean="musicBeanRock"/>
-                <ref bean="musicBeanJass"/>
-            </list>
-        </property>
-    </bean>
+    <!--    <bean id="musicPlayerBeansSetter"-->
+    <!--          class="org.example.test.MusicPlayer">-->
+    <!--        <property name="musicList">-->
+    <!--            <list value-type="org.example.test.Musics.Music">-->
+    <!--                <ref bean="musicBeanClassical"/>-->
+    <!--                <ref bean="musicBeanRock"/>-->
+    <!--                <ref bean="musicBeanJass"/>-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--    </bean>-->
 
 </beans>

@@ -1,4 +1,4 @@
-package org.example.test;
+package org.example.test.Musics;
 
 public class ClassicalMusic implements Music {
     @Override

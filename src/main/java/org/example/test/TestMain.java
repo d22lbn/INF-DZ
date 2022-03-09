@@ -18,11 +18,27 @@ public class TestMain {
 //        System.out.println(musicPlayer.getName());
 //        System.out.println(musicPlayer.getVolume());
 
-        MusicPlayer musicPlayer2 = context.getBean("musicPlayerBeansConstr", MusicPlayer.class);
-        musicPlayer2.playMusics();
-        System.out.println();
-        MusicPlayer musicPlayer3 = context.getBean("musicPlayerBeansSetter", MusicPlayer.class);
-        musicPlayer3.playMusics();
+//        MusicPlayer musicPlayer2 = context.getBean("musicPlayerBeansConstr", MusicPlayer.class);
+//        musicPlayer2.playMusics();
+//        System.out.println();
+//        MusicPlayer musicPlayer3 = context.getBean("musicPlayerBeansSetter", MusicPlayer.class);
+//        musicPlayer3.playMusics();
+
+
+        MusicPlayer player = context.getBean("musicPlayerBean", MusicPlayer.class);
+        MusicPlayer player2 = context.getBean("musicPlayerBean", MusicPlayer.class);
+
+//        сравниваем по ссылке
+        boolean comparison = player == player2;
+        System.out.println(comparison);
+
+//        метод выведет хеш объектов, так как toString() не переопределен
+        System.out.println(player);
+        System.out.println(player2);
+
+        player.setVolume(10);
+
+        System.out.println(player.getVolume() + " v " + player2.getVolume());
 
 
         context.close();

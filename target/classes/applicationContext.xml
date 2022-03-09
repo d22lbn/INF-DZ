@@ -16,32 +16,39 @@
     <!--    </bean>-->
 
     <bean id="musicBeanClassical"
-          class="org.example.test.Musics.ClassicalMusic">
+          class="org.example.test.Musics.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy">
+        <!--        тут добавляем методы при инициализации и дестрое-->
     </bean>
     <bean id="musicBeanRock"
-          class="org.example.test.Musics.RockMusic">
+          class="org.example.test.Musics.RockMusic"
+          scope="prototype"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy">
     </bean>
-    <bean id="musicBeanJass"
-          class="org.example.test.Musics.JassMusic">
+    <bean id="musicBeanJazz"
+          class="org.example.test.Musics.JazzMusic"
+          factory-method="getJazzMusic">
     </bean>
 
 
-    <bean id="musicPlayerBean"
-          class="org.example.test.MusicPlayer"
-          scope="prototype">
-        <!--          если singleton, то будет на одно и то же ссылаться-->
+    <!--    <bean id="musicPlayerBean"-->
+    <!--          class="org.example.test.MusicPlayer"-->
+    <!--          scope="prototype">-->
+    <!--          если singleton, то будет на одно и то же ссылаться-->
 
 
-        <!--        &lt;!&ndash;        Dependency Injection&ndash;&gt;-->
-        <!--        &lt;!&ndash;        <constructor-arg ref="musicBean"/>&ndash;&gt;-->
+    <!--        &lt;!&ndash;        Dependency Injection&ndash;&gt;-->
+    <!--        &lt;!&ndash;        <constructor-arg ref="musicBean"/>&ndash;&gt;-->
 
-        <!--        &lt;!&ndash;        через сеттер&ndash;&gt;-->
-        <!--        <property name="music" ref="musicBean"/>-->
+    <!--        &lt;!&ndash;        через сеттер&ndash;&gt;-->
+    <!--        <property name="music" ref="musicBean"/>-->
 
-        <!--        &lt;!&ndash;        добавили какие-то значения конкретные&ndash;&gt;-->
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+    <!--        &lt;!&ndash;        добавили какие-то значения конкретные&ndash;&gt;-->
+    <!--        <property name="name" value="${musicPlayer.name}"/>-->
+    <!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+    <!--    </bean>-->
 
 
     <!--    лист через конструктор-->

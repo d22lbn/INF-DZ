@@ -1,5 +1,6 @@
 package org.example.test;
 
+import org.example.test.Musics.JazzMusic;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestMain {
@@ -25,21 +26,42 @@ public class TestMain {
 //        musicPlayer3.playMusics();
 
 
-        MusicPlayer player = context.getBean("musicPlayerBean", MusicPlayer.class);
-        MusicPlayer player2 = context.getBean("musicPlayerBean", MusicPlayer.class);
+//        MusicPlayer player = context.getBean("musicPlayerBean", MusicPlayer.class);
+//        MusicPlayer player2 = context.getBean("musicPlayerBean", MusicPlayer.class);
+//
+////        сравниваем по ссылке
+//        boolean comparison = player == player2;
+//        System.out.println(comparison);
+//
+////        метод выведет хеш объектов, так как toString() не переопределен
+//        System.out.println(player);
+//        System.out.println(player2);
+//
+//        player.setVolume(10);
+//
+//        System.out.println(player.getVolume() + " v " + player2.getVolume());
 
-//        сравниваем по ссылке
-        boolean comparison = player == player2;
-        System.out.println(comparison);
 
-//        метод выведет хеш объектов, так как toString() не переопределен
-        System.out.println(player);
-        System.out.println(player2);
 
-        player.setVolume(10);
 
-        System.out.println(player.getVolume() + " v " + player2.getVolume());
 
+//        ClassicalMusic classicalMusic = context.getBean("musicBeanClassical", ClassicalMusic.class);
+//        ClassicalMusic classicalMusic2 = context.getBean("musicBeanClassical", ClassicalMusic.class);
+//        System.out.println(classicalMusic.getSong());
+//        System.out.println("--------------");
+//        RockMusic rockMusic = context.getBean("musicBeanRock", RockMusic.class);
+//        RockMusic rockMusic2 = context.getBean("musicBeanRock", RockMusic.class);
+//        System.out.println(rockMusic.getSong());
+
+
+//        JassMusic jassMusic = new JassMusic();
+
+
+//        System.out.println("-------------");
+        JazzMusic jazzMusic = context.getBean("musicBeanJazz", JazzMusic.class);
+        JazzMusic jazzMusic2 = context.getBean("musicBeanJazz", JazzMusic.class);
+        JazzMusic jazzMusic3 = context.getBean("musicBeanJazz", JazzMusic.class);
+//        System.out.println(jazzMusic.getSong());
 
         context.close();
     }

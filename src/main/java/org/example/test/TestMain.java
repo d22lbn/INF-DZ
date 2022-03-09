@@ -1,6 +1,6 @@
 package org.example.test;
 
-import org.example.test.Musics.JazzMusic;
+import org.example.test.Musics.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestMain {
@@ -58,10 +58,32 @@ public class TestMain {
 
 
 //        System.out.println("-------------");
-        JazzMusic jazzMusic = context.getBean("musicBeanJazz", JazzMusic.class);
-        JazzMusic jazzMusic2 = context.getBean("musicBeanJazz", JazzMusic.class);
-        JazzMusic jazzMusic3 = context.getBean("musicBeanJazz", JazzMusic.class);
+//        JazzMusic jazzMusic = context.getBean("musicBeanJazz", JazzMusic.class);
+//        JazzMusic jazzMusic2 = context.getBean("musicBeanJazz", JazzMusic.class);
+//        JazzMusic jazzMusic3 = context.getBean("musicBeanJazz", JazzMusic.class);
 //        System.out.println(jazzMusic.getSong());
+
+
+//        ClassicalMusicAnnotation musicAnnotation = context.getBean(
+//                "classicalMusicAnnotation", ClassicalMusicAnnotation.class);
+//        MusicPlayer musicPlayer = context.getBean("musicPlayerBean", MusicPlayer.class);
+//        musicPlayer.playMusic();
+
+
+//        MusicPlayerAnn musicPlayerAnn = context.getBean("musicPlayerAnn", MusicPlayerAnn.class);
+//        musicPlayerAnn.playMusic();
+
+
+//        Computer computer = context.getBean("computer", Computer.class);
+//        System.out.println(computer.toString());
+
+
+//        MusicPlayerAnn playerAnn = context.getBean("musicPlayerAnn", MusicPlayerAnn.class);
+//        System.out.println(playerAnn.getName() + " " + playerAnn.getVolume());
+
+        ClassicalMusicAnnotation music1 = context.getBean(
+                "classicalMusicAnnotation", ClassicalMusicAnnotation.class);
+
 
         context.close();
     }

@@ -8,47 +8,47 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--    подключение файла-->
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+<!--    <context:property-placeholder location="classpath:musicPlayer.properties"/>-->
+    <context:property-placeholder location="classpath:musicPlayerAnn.properties"/>
 
     <!--    <bean id="testBean"-->
     <!--          class="org.example.test.TestBean">-->
     <!--        <constructor-arg value="Alex"/>-->
     <!--    </bean>-->
 
-    <bean id="musicBeanClassical"
-          class="org.example.test.Musics.ClassicalMusic"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy">
-        <!--        тут добавляем методы при инициализации и дестрое-->
-    </bean>
-    <bean id="musicBeanRock"
-          class="org.example.test.Musics.RockMusic"
-          scope="prototype"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy">
-    </bean>
-    <bean id="musicBeanJazz"
-          class="org.example.test.Musics.JazzMusic"
-          factory-method="getJazzMusic">
-    </bean>
+<!--    <bean id="musicBeanClassical"-->
+<!--          class="org.example.test.Musics.ClassicalMusic"-->
+<!--    >-->
+<!--        &lt;!&ndash;        тут добавляем методы при инициализации и дестрое&ndash;&gt;-->
+<!--    </bean>-->
+<!--    <bean id="musicBeanRock"-->
+<!--          class="org.example.test.Musics.RockMusic"-->
+<!--          scope="prototype"-->
+<!--          init-method="doMyInit"-->
+<!--          destroy-method="doMyDestroy">-->
+<!--    </bean>-->
+<!--    <bean id="musicBeanJazz"-->
+<!--          class="org.example.test.Musics.JazzMusic"-->
+<!--          factory-method="getJazzMusic">-->
+<!--    </bean>-->
 
 
-    <!--    <bean id="musicPlayerBean"-->
-    <!--          class="org.example.test.MusicPlayer"-->
-    <!--          scope="prototype">-->
-    <!--          если singleton, то будет на одно и то же ссылаться-->
+<!--    <bean id="musicPlayerBean"-->
+<!--          class="org.example.test.MusicPlayer"-->
+<!--    >-->
+<!--        &lt;!&ndash;          если singleton, то будет на одно и то же ссылаться&ndash;&gt;-->
 
 
-    <!--        &lt;!&ndash;        Dependency Injection&ndash;&gt;-->
-    <!--        &lt;!&ndash;        <constructor-arg ref="musicBean"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        &lt;!&ndash;        Dependency Injection&ndash;&gt;&ndash;&gt;-->
+<!--        <constructor-arg ref="classicalMusicAnnotation"/>-->
 
-    <!--        &lt;!&ndash;        через сеттер&ndash;&gt;-->
-    <!--        <property name="music" ref="musicBean"/>-->
+<!--        &lt;!&ndash;        &lt;!&ndash;        через сеттер&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;        <property name="music" ref="musicBean"/>&ndash;&gt;-->
 
-    <!--        &lt;!&ndash;        добавили какие-то значения конкретные&ndash;&gt;-->
-    <!--        <property name="name" value="${musicPlayer.name}"/>-->
-    <!--        <property name="volume" value="${musicPlayer.volume}"/>-->
-    <!--    </bean>-->
+<!--        &lt;!&ndash;        &lt;!&ndash;        добавили какие-то значения конкретные&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;        <property name="name" value="${musicPlayer.name}"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <property name="volume" value="${musicPlayer.volume}"/>&ndash;&gt;-->
+<!--    </bean>-->
 
 
     <!--    лист через конструктор-->
@@ -74,5 +74,8 @@
     <!--            </list>-->
     <!--        </property>-->
     <!--    </bean>-->
+
+    <!--    для аннотаций-->
+    <context:component-scan base-package="org.example.test"/>
 
 </beans>

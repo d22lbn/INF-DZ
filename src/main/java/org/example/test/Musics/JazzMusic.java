@@ -11,7 +11,6 @@ public class JazzMusic implements Music {
 
     private JazzMusic() {}
     public static JazzMusic getJazzMusic() {
-        System.out.println("Hello");
         return new JazzMusic();
     }
 }
